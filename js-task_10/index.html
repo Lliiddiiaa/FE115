@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>  
+    <title>To Do List</title>  
+    <link rel="stylesheet" href = "css/style.css">
 </head>
 <body>
+    <div class="container">
+
+        <div class="todo_list">
+             <h1>ToDo list</h1>
+            <div class="create_new_todo">
+                <input type="text" class="message" placeholder="Описание">
+                <button class="add">Добавить</button>
+            </div>
+     
+            <div class="wrapper">
+                <ul class="todo"></ul>
+            </div>
+
+            <button class="deleteAll"> Очистить список </button>
+     
+        </div>
+     
+    </div>
 <script src="js/script.js"></script>
 </body>
 </html>
