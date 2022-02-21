@@ -454,9 +454,9 @@ function delivery() {
         Информация о заказчике: 
         ФИО: ${fieldName};
         Телефон: ${fieldPhone};
-        Почта: ${fieldEmail} `;
+        Почта: ${fieldEmail} ;`
 
-        pShow.appendChild(divShow);
+        divShow.appendChild(pShow);
 
     }
 }
