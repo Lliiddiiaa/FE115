@@ -7,3 +7,10 @@
 .forms {
     margin: 10px 20px;
 }
+
+.button {
+    width: 100px;
+    border-radius: 30px;
+    background-color: #DEC;
+}
+
