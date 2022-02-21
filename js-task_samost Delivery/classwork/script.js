@@ -1,13 +1,116 @@
 
 function delivery(){
-    let filedName = null;
-    let fieldPhone = null;
-    let fieldEmail = null;
-    let fieldDAteCurrent = null;
-    let fieldDistA = null;
-    let fieldDistB = null;
-    let fieldDateDeparture = null;
-    let fieldDateDelivery = null;
+    let filedName = null,
+    fieldPhone = null,
+    fieldEmail = null,
+    filedDeliveryMethods = null,
+    fieldDateCurrent = null,
+    fieldDistA = null,
+    fieldDistB = null,
+    fieldDateDeparture = null,
+    fieldDateDelivery = null;
+    
+    let dataArray = []
+
+
+        let distances = [
+            {
+                a: 'Брест',
+                b: 'Гомель',
+                d: 531
+            },
+            {
+                a: 'Брест',
+                b: 'Гродно',
+                d: 269
+            },
+            {
+                a: 'Брест',
+                b: 'Витебск',
+                d: 614
+            },
+            {
+                a: 'Брест',
+                b: 'Минск',
+                d: 345
+            },
+            {
+                a: 'Брест',
+                b: 'Могилев',
+                d: 522
+            },
+            {
+                a: 'Гомель',
+                b: 'Брест',
+                d: 531
+            },
+            {
+                a: 'Гомель',
+                b: 'Гродно',
+                d: 581
+            },
+            {
+                a: 'Гомель',
+                b: 'Витебск',
+                d: 332
+            },
+            {
+                a: 'Гомель',
+                b: 'Минск',
+                d: 302
+            },
+            {
+                a: 'Гомель',
+                b: 'Могилев',
+                d: 177
+            },
+            {
+                a: 'Гродно',
+                b: 'Витебск',
+                d: 294
+            },
+            {
+                a: 'Гродно',
+                b: 'Минск',
+                d: 269
+            },
+            {
+                a: 'Гродно',
+                b: 'Могилев',
+                d: 473
+            },
+            {
+                a: 'Витебск',
+                b: 'Минск',
+                d: 269
+            },
+            {
+                a: 'Витебск',
+                b: 'Могилев',
+                d: 167
+            },
+            {
+                a: 'Минск',
+                b: 'Могилев',
+                d: 204
+            },
+        ]
+
+        let prices = [
+            {
+                method:'Самолет',
+                price:300
+            },
+            {
+                method:'Такси',
+                price:5
+            },
+            {
+                method:'Частный водитель',
+                price:1
+            }
+        ]
+
 
     function showForm() {
         let deliveryMethod = ['Самолет', 'Такси', 'Частный водитель', 'Пеший курьер'];
@@ -92,7 +195,7 @@ function delivery(){
         btn.setAttribute('class', 'btn-submit');
         btn.innerText = 'Рассчитать стоимость';
         form.addEventListener('submit', (e) => {
-            formHandler()
+            formHandler(e, form,departure,destination)
         })
     
         form.append(fio,phone,mail,typeDelivery,now,departure,destination,dateDeparture,dateDelivery,btn);
@@ -107,11 +210,57 @@ function delivery(){
         })
     }
     
-    function formHandler(e) {
+    function formHandler(e, conteiner,dep,dest) {
         e.preventDefault();
+        if(dep.value == dest.value) return
+        [...conteiner.children].map((elem, i) => {
+            if(elem.tagName != 'BUTTON') dataArray[i] = elem.value;
+        });
+        [
+            
+        filedName, 
+        fieldPhone, 
+        fieldEmail,
+        filedDeliveryMethods,
+        fieldDateCurrent,
+        fieldDistA,
+        fieldDistB,
+        fieldDateDeparture,
+        fieldDateDelivery,
+    ] = dataArray;
+    console.log(dataArray);
+    let price = calculation();
+    showCalculation(price);
     }
+
+    function calculation() {
+        let distA = fieldDistA,
+            distB = fieldDistB,
+            method = filedDeliveryMethods;
+
+        let dist= distances.find(elem => {
+            if((elem.a == distA || elem.b == distA) && (elem.a == distB || elem.b == distB))
+            return elem;
+        })
+        let coof = prices.find(elem => elem.method == method ? elem : null)
+        return dist.d * coof.price
+    }
+
+    function showCalculation(price) {
+        if(document.body.lastChild.className != 'price' ) {
+            
+            let priceFinaly = document.createElement('div');
+            priceFinaly.setAttribute('class', 'price');
+            priceFinaly.innerText = `Стоимость доставки ${price}`;
+
+            document.body.append(priceFinaly);
+    } else {
+        document.body.lastChild.innerText =  `Стоимость доставки ${price}`;
+    }
+    }   
+       
 
     showForm();
 }
 
-window.addEventListener('DOMContentLoaded',delivery);
+window.addEventListener('DOMContentLoaded', delivery);
