@@ -1,0 +1,53 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+body {
+    background-image: url('./img/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.stih {
+    display: flex;
+    justify-content:center;
+}
+
+.stih p {
+    margin: 20px;
+    font-size: 24px;
+}
+
+.tooltip {
+    position: relative;
+    color: aqua;
+}
+
+.tooltip-element {
+    position: absolute;
+    top: 10px;
+    /* padding: 10px 20px; */
+    border: 1px solid #2cb0ce;
+    border-radius: 4px;
+    text-align: center;
+    color: crimson;
+    background: #fff;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+
+
+/* .tooltip {
+    position: fixed;
+    padding: 10px 20px;
+    border: 1px solid #2cb0ce;
+    border-radius: 4px;
+    text-align: center;
+    color: crimson;
+    background: #fff;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+} */
+
+p {
+    font-size: 24px;
+}
