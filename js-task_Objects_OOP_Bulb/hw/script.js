@@ -29,37 +29,32 @@ let Bulb = function(power,price,time) {
     time = time || +prompt('Введите отработанное лампочкой время');
 
     if (confirm('Включить лампочку?')) {
-        this.on();
-    };
+        this.on = function() {
+            if (parentGetStatus() == true && power > 0 && price > 0 && time > 0) status = true;
+            findTotalPrice();
+        };
 
-    let status = false;
+        let status = false;
 
     let parentGetStatus = this.getStatus,
     parentDisable = this.disable;
 
-    this.on = function() {
-        if (parentGetStatus() == true && power > 0 && price > 0 && time > 0) status = true;
-        findTotalPrice();
-    };
 
     this.off = function() {
         status = false;
     };
 
     let findTotalPrice = function() {
-    this.result = (this.power / 1000) * this.price * this.time
- 
-    this.show();
-    };
+    let result = (power / 1000) * price * time;
+    console.log(result);
 
-    this.show = function () {
+        if (time == 0 || time == undefined) {
+            console.log('Лампочка не включена');
+        } else {
+            console.log('Лампочка проработала - ' + time + 'ч, и стоимость потраченой электроэнергии составляет = ' + result + 'р.');
+        }
 
-    if (this.time == 0 || this.time == undefined) {
-        console.log('Лампочка "' + this.name + '" не включена');
-    } else {
-        console.log('Лампочка "' + this.name + '" проработала - ' + this.time + 'ч, и стоимость потраченой электроэнергии составляет = ' + this.result + 'р.');
-    }
-    };
+    }; 
 
 
     this.getStatus = function() {
@@ -75,6 +70,8 @@ let Bulb = function(power,price,time) {
 
         if(parentGetStatus() == false) this.off();
     };
+    };
+ 
 };
 
-
+let bulb1 = new Bulb();
