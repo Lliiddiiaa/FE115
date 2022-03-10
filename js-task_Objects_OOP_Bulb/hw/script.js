@@ -75,3 +75,4 @@ let Bulb = function(power,price,time) {
 };
 
 let bulb1 = new Bulb();
+bulb1.enable();
