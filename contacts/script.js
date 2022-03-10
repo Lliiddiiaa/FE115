@@ -30,7 +30,7 @@ class Contacts {
     }
 
     edit(id, data){
-        let noteFind = this.contacts.find(contact => {
+        let contactFind = this.contacts.find(contact => {
             return contact.data.id === id ? contact: null;
         })
         console.log(contactFind)
@@ -170,8 +170,7 @@ class ContactsApp extends Contacts{
         // let dataList = this.getNotes();
 
         
-        ////?????????????
-        // ------------------------------------------------------
+        
         dataList.map(elem => {
             let elemList = document.createElement('li');
             elemList.setAttribute('class', 'contact_list_item');
@@ -180,39 +179,47 @@ class ContactsApp extends Contacts{
             listTitle.setAttribute('class', 'contact_list_item_title');
             listTitle.innerText = elem.data.title;
 
-            let listContent = document.createElement('div');
-            listContent.setAttribute('class', 'note_list_item_content');
-            listContent.innerText = elem.data.content;
+            let listNumber = document.createElement('div');
+            listNumber.setAttribute('class', 'number_item');
+            listNumber.innerText = elem.data.phone;
+
+            let listEmail = document.createElement('div');
+            listEmail.setAttribute('class', 'email_item');
+            listEmail.innerText = elem.data.email;
+
+            let listAdresse = document.createElement('div');
+            listAdresse.setAttribute('class', 'adresse_item');
+            listAdresse.innerText = elem.data.adresse;
 
             let editBtn = document.createElement("button");
-            editBtn.setAttribute('class', 'note_list_item_edit');
+            editBtn.setAttribute('class', 'contact_list_item_edit');
             editBtn.innerText = 'Edit'
 
             let removeBtn = document.createElement("button");
-            removeBtn.setAttribute('class', 'note_list_item_remove');
+            removeBtn.setAttribute('class', 'contact_list_item_remove');
             removeBtn.innerText = 'X';
-            elemList.append(listTitle, listContent, editBtn, removeBtn)
+            elemList.append(listTitle,listNumber, listEmail,listAdresse, editBtn, removeBtn)
             this.notesList.append(elemList);
 
             editBtn.addEventListener('click', _ => {
-                this.editNote(listTitle, listContent)
+                this.editContact(listTitle,listNumber, listEmail,listAdresse)
             })
 
-            removeBtn.addEventListener('click', _ => this.noteRemove(elem.data.id))
+            removeBtn.addEventListener('click', _ => this.contactRemove(elem.data.id))
 
             listTitle.addEventListener('keydown', e => {
-                this.saveNote(e, elem.data.id, listTitle, listContent)
+                this.saveContact(e, elem.data.id, listTitle,listNumber, listEmail,listAdresse)
             })
 
             listContent.addEventListener('keydown', e => {
-                this.saveNote(e, elem.data.id, listTitle, listContent)
+                this.saveNote(e, elem.data.id, listTitle,listNumber, listEmail,listAdresse)
             })
         })
 
         this.storage = this.contacts;
         this.setCookie('contactsExp', 1, {'max-age': 864000})
     }
-    // --------------------------------------------------------------
+    
 
     get storage(){
         let stoage = localStorage.getItem('contacts');
@@ -225,28 +232,35 @@ class ContactsApp extends Contacts{
     }
 
     // ------------------------------------------------------------?
-    editContacts(title, content){
+    editContact(title, phone,email,adresse){
         title.setAttribute('contenteditable', 'true');
-        content.setAttribute('contenteditable', 'true');
+        phone.setAttribute('contenteditable', 'true');
+        email.setAttribute('contenteditable', 'true');
+        adresse.setAttribute('contenteditable', 'true');
     }
 
-    noteRemove(id){
+    contactRemove(id){
         this.remove(id);
         this.createContact();
     }
 
-    saveContact(e, id, title, content) {
+    saveContact(e, id, title, phone,email,adresse) {
         if (e.key === 'Enter' && e.ctrlKey) {
             title.setAttribute('contenteditable', 'false');
-            content.setAttribute('contenteditable', 'false');
+            phone.setAttribute('contenteditable', 'false');
+            email.setAttribute('contenteditable', 'false');
+            adresse.setAttribute('contenteditable', 'false');
             let data = {
                 title: title.innerText,
-                content: content.innerText,
+                // content: content.innerText,
+                phone: phone.innerText,
+                email: email.innerText,
+                adresse: adresse.innerText,
             }
 
             this.edit(id, data);
         }
-        this.storage = this.notes;
+        this.storage = this.contacts;
     }
 
     //Готовое решение
