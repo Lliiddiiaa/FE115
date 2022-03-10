@@ -41,7 +41,7 @@ class Contacts {
         this.contacts = this.contacts.filter(contact => contact.data.id !== id ? contact: null);
     }
 
-    getNotes(){
+    getContacts(){
         return this.contacts;
     }
 
@@ -107,7 +107,7 @@ class ContactsApp extends Contacts{
 
         formContact.append(textContactTitle, ContactNumber, ContacEmail,contactAdresse, formButton);
 
-        let contactsList = document.createElement('ul');
+        let contactsList = document.createElement('ul');  // -----------------------------определяем contactsList
         contactsList.setAttribute('class', 'contacts_list');
         this.contactsList = contactsList;
 
@@ -136,10 +136,7 @@ class ContactsApp extends Contacts{
 
     addContact(e){
         e.preventDefault();
-        // let regExp = [/[0-9a-z]@[a-z].[a-z]{2,6}/g, /[0-9A-Za-z]/g]
-        // let regTrue = this.textInputs.every((elem, i) => this.reg(elem, regExp[i]))
-        //
-        // if(!regTrue) return;
+        
 
         let data = this.Inputs.reduce((obj, elem) => ({...obj, [elem.name]:elem.value}),{})
         console.log(this);
@@ -149,27 +146,15 @@ class ContactsApp extends Contacts{
         console.log(this.contacts);
     }
 
-    // reg(elem, regExp){
-    //     if(regExp.test(elem.value)){
-    //        return true
-    //     }else{
-    //         elem.style.border = '1px solid red'
-    //         return false
-    //     }
-    // }
+
+
+    // ?? --------------------------------------------------------- не получает данных??
+
 
     createContact(){
-        this.contactesList.innerHTML = '';
-        // let dataStorage = this.storage;
+        this.contactsList.innerHTML = '';
         let dataList = this.getContacts();
 
-        // if(dataStorage){
-        //     this.notes = dataStorage;
-        // }
-
-        // let dataList = this.getNotes();
-
-        
         
         dataList.map(elem => {
             let elemList = document.createElement('li');
