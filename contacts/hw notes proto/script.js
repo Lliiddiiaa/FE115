@@ -6,14 +6,14 @@ class Contacts {
     }
 
     add(data){
-        if(data.content && data.content.length > 0) {
-            // this.contactId++
+        if(true) {
+            this.contactId++
             // let contactId = Math.floor(Math.random() * 100);
             let contactId = this.getId();
 
 
             let contact = new User(data);
-            contact.edit({id: noteId});
+            // contact.edit({id: contactId}); 
             this.contacts.push(contact);
             console.log(this.contacts);
         }
@@ -21,7 +21,7 @@ class Contacts {
 
     getId(){
         let contactId = Math.floor(Math.random() * 100);
-        if(this.contacts) return noteId;
+        if(this.contacts) return contactId; 
         if (this.contacts.some(data => data.id === contactId)){
             this.getId()
         }else{
@@ -49,7 +49,7 @@ class Contacts {
 
 class User {
     constructor(data) {
-        if(data.content && data.content.length > 0 ) this.data = data;
+        if(data.title && data.title.length > 0 && data.phone && data.phone.length > 0 && data.email && data.email.length > 0 && data.adresse && data.adresse.length > 0) this.data = data;
     }
 
     edit(data) {
@@ -107,7 +107,7 @@ class ContactsApp extends Contacts{
 
         formContact.append(textContactTitle, ContactNumber, ContacEmail,contactAdresse, formButton);
 
-        let contactsList = document.createElement('ul');  // -----------------------------определяем contactsList
+        let contactsList = document.createElement('ul');  
         contactsList.setAttribute('class', 'contacts_list');
         this.contactsList = contactsList;
 
@@ -146,11 +146,7 @@ class ContactsApp extends Contacts{
         console.log(this.contacts);
     }
 
-
-
-    // ?? --------------------------------------------------------- не получает данных??
-
-
+// ?? -----------------_-------------------------------------------------------------------------------------------------- ??
     createContact(){
         this.contactsList.innerHTML = '';
         let dataList = this.getContacts();
@@ -184,7 +180,7 @@ class ContactsApp extends Contacts{
             removeBtn.setAttribute('class', 'contact_list_item_remove');
             removeBtn.innerText = 'X';
             elemList.append(listTitle,listNumber, listEmail,listAdresse, editBtn, removeBtn)
-            this.notesList.append(elemList);
+            this.contactsList.append(elemList);
 
             editBtn.addEventListener('click', _ => {
                 this.editContact(listTitle,listNumber, listEmail,listAdresse)
@@ -196,8 +192,16 @@ class ContactsApp extends Contacts{
                 this.saveContact(e, elem.data.id, listTitle,listNumber, listEmail,listAdresse)
             })
 
-            listContent.addEventListener('keydown', e => {
-                this.saveNote(e, elem.data.id, listTitle,listNumber, listEmail,listAdresse)
+            listNumber.addEventListener('keydown', e => {
+                this.saveContact(e, elem.data.id, listTitle,listNumber, listEmail,listAdresse)
+            })
+
+            listEmail.addEventListener('keydown', e => {
+                this.saveContact(e, elem.data.id, listTitle,listNumber, listEmail,listAdresse)
+            })
+
+            listAdresse.addEventListener('keydown', e => {
+                this.saveContact(e, elem.data.id, listTitle,listNumber, listEmail,listAdresse)
             })
         })
 
