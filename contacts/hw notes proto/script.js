@@ -15,7 +15,7 @@ class Contacts {
             let contact = new User(data);
             // contact.edit({id: contactId}); 
             this.contacts.push(contact);
-            console.log(this.contacts);
+            // console.log(this.contacts);
         }
     }
 
@@ -143,10 +143,10 @@ class ContactsApp extends Contacts{
         this.add(data);
         this.Inputs.forEach(elem => elem.value = '')
         this.createContact();
-        console.log(this.contacts);
+        // console.log(this.contacts);
     }
 
-// ?? -----------------_-------------------------------------------------------------------------------------------------- ??
+
     createContact(){
         this.contactsList.innerHTML = '';
         let dataList = this.getContacts();
@@ -186,7 +186,7 @@ class ContactsApp extends Contacts{
                 this.editContact(listTitle,listNumber, listEmail,listAdresse)
             })
 
-            removeBtn.addEventListener('click', _ => this.contactRemove(elem.data.id))
+            removeBtn.addEventListener('click', _ => this.contactRemove(elem.data.id))// ------------------------------------------------------------?????
 
             listTitle.addEventListener('keydown', e => {
                 this.saveContact(e, elem.data.id, listTitle,listNumber, listEmail,listAdresse)
@@ -220,19 +220,19 @@ class ContactsApp extends Contacts{
         localStorage.setItem('contacts', dataStorage);
     }
 
-    // ------------------------------------------------------------?
+    
     editContact(title, phone,email,adresse){
         title.setAttribute('contenteditable', 'true');
         phone.setAttribute('contenteditable', 'true');
         email.setAttribute('contenteditable', 'true');
         adresse.setAttribute('contenteditable', 'true');
     }
-
+// ------------------------------------------------------------?????
     contactRemove(id){
         this.remove(id);
         this.createContact();
     }
-
+// ------------------------------------------------------------??????
     saveContact(e, id, title, phone,email,adresse) {
         if (e.key === 'Enter' && e.ctrlKey) {
             title.setAttribute('contenteditable', 'false');
