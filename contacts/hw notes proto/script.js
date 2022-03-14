@@ -48,6 +48,16 @@ class Contacts {
 }
 
 class User {
+
+    // async getData(){
+
+    //     let data;
+    //     await fetch('https://jsonplaceholder.typicode.com/users')
+    //         .then(response => response.json())
+    //         .then(json => data = json);
+    //     this.users = data;
+    // }
+
     constructor(data) {
         if(data.title && data.title.length > 0 && data.phone && data.phone.length > 0 && data.email && data.email.length > 0 && data.adresse && data.adresse.length > 0) this.data = data;
     }
@@ -64,6 +74,28 @@ class ContactsApp extends Contacts{
     }
 
     init(){
+
+        // async function getData(data) {
+            
+        //     if(!dataStorage){
+
+        //         await fetch(`https://jsonplaceholder.typicode.com/users`)
+        //             .then(responce => {
+        //                 // console.log(responce);
+        //                 return responce.json() //Преобразуем в JSON
+        //             })
+        //             .then(d => {
+        //                 data = d
+        //                 console.log(d)
+        //             })
+        //             .catch(error => {
+        //                 data = error
+        //             })
+        //         if(data.cod === 200) return data
+
+        //     }
+        // }
+
         let formContact = document.createElement('form');
         formContact.setAttribute('class', 'contact_form');
 
