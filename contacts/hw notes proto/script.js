@@ -13,7 +13,7 @@ class Contacts {
 
 
             let contact = new User(data);
-            // contact.edit({id: contactId}); 
+            contact.edit({id: contactId}); 
             this.contacts.push(contact);
             // console.log(this.contacts);
         }
@@ -139,7 +139,7 @@ class ContactsApp extends Contacts{
         
 
         let data = this.Inputs.reduce((obj, elem) => ({...obj, [elem.name]:elem.value}),{})
-        console.log(this);
+        // console.log(this);
         this.add(data);
         this.Inputs.forEach(elem => elem.value = '')
         this.createContact();
@@ -227,12 +227,12 @@ class ContactsApp extends Contacts{
         email.setAttribute('contenteditable', 'true');
         adresse.setAttribute('contenteditable', 'true');
     }
-// ------------------------------------------------------------?????
+
     contactRemove(id){
         this.remove(id);
         this.createContact();
     }
-// ------------------------------------------------------------??????
+
     saveContact(e, id, title, phone,email,adresse) {
         if (e.key === 'Enter' && e.ctrlKey) {
             title.setAttribute('contenteditable', 'false');
