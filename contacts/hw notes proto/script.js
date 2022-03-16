@@ -96,6 +96,26 @@ class ContactsApp extends Contacts{
         //     }
         // }
 
+        async function getData() {
+            let rez = [];
+            await fetch(`https://jsonplaceholder.typicode.com/users`)
+            .then(resp => resp.json())
+            .then( json => json.map( data => rez.push(data)))
+            rez = f(rez)
+            // return this.contacts = rez;
+            return rez; 
+            // return this.data = rez;
+            // return data = rez;
+            
+        }
+
+        function f(data) {
+            return data.map(d => {
+                let {id,name,phone:tel,username,address:{city}} = d
+                return {id,name,tel,username,city}
+            })
+        }
+
         let formContact = document.createElement('form');
         formContact.setAttribute('class', 'contact_form');
 
@@ -125,12 +145,6 @@ class ContactsApp extends Contacts{
         contactAdresse.setAttribute('name', 'adresse');
         contactAdresse.setAttribute('class', 'contact_adresse');
         contactAdresse.setAttribute('placeholder', 'г. Минск, ул. Краснозвездная 11-1');
-
-
-        // let textNoteContent = document.createElement('textarea');
-        // textNoteContent.setAttribute('name', 'content');
-        // textNoteContent.setAttribute('class', 'note_text_content');
-        // textNoteContent.setAttribute('placeholder', 'Content');
 
         let formButton = document.createElement('button');
         formButton.setAttribute('type', 'submit');
@@ -163,6 +177,12 @@ class ContactsApp extends Contacts{
             dataStorage.forEach(elem => this.add(elem.data))
         }
 
+        if (dataStorage == false || dataStorage == null){
+            getData()
+            // dataStorage.forEach(data => this.add(rez.data)
+            // dataStorage.forEach(data => dataStorage.add(rez.data)
+        }
+
         this.createContact();
     }
 
@@ -171,11 +191,9 @@ class ContactsApp extends Contacts{
         
 
         let data = this.Inputs.reduce((obj, elem) => ({...obj, [elem.name]:elem.value}),{})
-        // console.log(this);
         this.add(data);
         this.Inputs.forEach(elem => elem.value = '')
         this.createContact();
-        // console.log(this.contacts);
     }
 
 
