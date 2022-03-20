@@ -83,8 +83,9 @@ class ContactsApp extends Contacts{
 
             // return console.log(dataStorage) //показывает
             // return console.log(dataStorage.data) // undefined
-            // dataStorage.forEach(elem =>this.add(elem.data)) //не опеределяет свойства undefined add
+            // dataStorage.forEach(elem =>dataStorage.add(elem.data)) //не опеределяет свойства undefined add
             // this.createContact();
+            //createContact(dataStorage);
             // return dataStorage.add()
     
 
