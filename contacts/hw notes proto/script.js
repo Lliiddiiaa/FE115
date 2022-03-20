@@ -49,15 +49,6 @@ class Contacts {
 
 class User {
 
-    // async getData(){
-
-    //     let data;
-    //     await fetch('https://jsonplaceholder.typicode.com/users')
-    //         .then(response => response.json())
-    //         .then(json => data = json);
-    //     this.users = data;
-    // }
-
     constructor(data) {
         if(data.title && data.title.length > 0 && data.phone && data.phone.length > 0 && data.email && data.email.length > 0 && data.adresse && data.adresse.length > 0) this.data = data;
     }
@@ -75,47 +66,39 @@ class ContactsApp extends Contacts{
 
     init(){
 
-        // async function getData(data) {
-            
-        //     if(!dataStorage){
-
-        //         await fetch(`https://jsonplaceholder.typicode.com/users`)
-        //             .then(responce => {
-        //                 // console.log(responce);
-        //                 return responce.json() //Преобразуем в JSON
-        //             })
-        //             .then(d => {
-        //                 data = d
-        //                 console.log(d)
-        //             })
-        //             .catch(error => {
-        //                 data = error
-        //             })
-        //         if(data.cod === 200) return data
-
-        //     }
-        // }
-
         async function getData() {
-            let rez = [];
             await fetch(`https://jsonplaceholder.typicode.com/users`)
             .then(resp => resp.json())
-            .then( json => json.map( data => rez.push(data)))
-            rez = f(rez)
-            // return this.contacts = rez;
-            return rez; 
-            // return this.data = rez;
-            // return data = rez;
-            
+            .then( json => json.map( data => dataStorage.push(data)))
+            dataStorage = f(dataStorage)
+
+            dataStorage.forEach(elem =>this.add(elem.data)) //не опеределяет свойства undefined add
+            this.createContact();
+
+            // console.log(dataStorage) 
+            // let data = this.dataStorage.reduce((obj, elem) => ({...obj, [elem.name]:elem.value}),{}) ////не опеределяет свойства undefined dataStorage
+            // this.add(data);
+            // createContact();
+        
+
+            // return console.log(dataStorage) //показывает
+            // return console.log(dataStorage.data) // undefined
+            // dataStorage.forEach(elem =>this.add(elem.data)) //не опеределяет свойства undefined add
+            // this.createContact();
+            // return dataStorage.add()
+    
+
+
         }
 
         function f(data) {
             return data.map(d => {
-                let {id,name,phone:tel,username,address:{city}} = d
-                return {id,name,tel,username,city}
+                let {id,phone,name:title,email, address:{city}} = d
+                return {title,phone,email,city,id}
             })
         }
 
+        
         let formContact = document.createElement('form');
         formContact.setAttribute('class', 'contact_form');
 
@@ -179,7 +162,7 @@ class ContactsApp extends Contacts{
 
         if (dataStorage == false || dataStorage == null){
             getData()
-            // dataStorage.forEach(data => this.add(rez.data)
+            // dataStorage.forEach(data => this.add(elem.data))
             // dataStorage.forEach(data => dataStorage.add(rez.data)
         }
 
