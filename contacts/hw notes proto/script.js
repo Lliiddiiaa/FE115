@@ -64,7 +64,7 @@ class ContactsApp extends Contacts{
         this.init();
     }
 
-    init(){
+    async init(){
 
         async function getData() {
             await fetch(`https://jsonplaceholder.typicode.com/users`)
@@ -162,7 +162,7 @@ class ContactsApp extends Contacts{
         }
 
         if (dataStorage == false || dataStorage == null){
-            getData()
+            await getData()
             // dataStorage.forEach(data => this.add(elem.data))
             // dataStorage.forEach(data => dataStorage.add(rez.data)
         }
