@@ -66,36 +66,26 @@ class ContactsApp extends Contacts{
 
     async init(){
 
+        let self = this;
         async function getData() {
+            let dataStorage = [];
             await fetch(`https://jsonplaceholder.typicode.com/users`)
             .then(resp => resp.json())
             .then( json => json.map( data => dataStorage.push(data)))
             dataStorage = f(dataStorage)
 
-            dataStorage.forEach(elem => this.add(elem.data)) //не опеределяет свойства undefined add
+            // console.log(dataStorage);
+            // console.log(self);
+
+            dataStorage.forEach(elem => self.add(elem.data)) 
             this.createContact();
-
-            // console.log(dataStorage) 
-            // let data = this.dataStorage.reduce((obj, elem) => ({...obj, [elem.name]:elem.value}),{}) ////не опеределяет свойства undefined dataStorage
-            // this.add(data);
-            // createContact();
-        
-
-            // return console.log(dataStorage) //показывает
-            // return console.log(dataStorage.data) // undefined
-            // dataStorage.forEach(elem =>dataStorage.add(elem.data)) //dataStorage.add не функция
-            // this.createContact();
-            //createContact(dataStorage);
-            // return dataStorage.add()
-    
-
 
         }
 
         function f(data) {
             return data.map(d => {
-                let {id,phone,name:title,email, address:{city}} = d
-                return {title,phone,email,city,id}
+                let {id,phone,name:title,email, address:{city:adresse}} = d
+                return {title,phone,email,adresse,id}
             })
         }
 
@@ -163,8 +153,6 @@ class ContactsApp extends Contacts{
 
         if (dataStorage == false || dataStorage == null){
             await getData()
-            // dataStorage.forEach(data => this.add(elem.data))
-            // dataStorage.forEach(data => dataStorage.add(rez.data)
         }
 
         this.createContact();
