@@ -1,6 +1,5 @@
 import User from "./modules/user.js";
 
-
 class Contacts {
 
     constructor() {
@@ -11,12 +10,14 @@ class Contacts {
     add(data){
         if(true) {
             this.contactId++
+            // let contactId = Math.floor(Math.random() * 100);
             let contactId = this.getId();
 
 
             let contact = new User(data);
             contact.edit({id: contactId}); 
             this.contacts.push(contact);
+            // console.log(this.contacts);
         }
     }
 
@@ -47,17 +48,6 @@ class Contacts {
     }
 
 }
-
-// class User {
-
-//     constructor(data) {
-//         if(data.title && data.title.length > 0 && data.phone && data.phone.length > 0 && data.email && data.email.length > 0 && data.adresse && data.adresse.length > 0) this.data = data;
-//     }
-
-//     edit(data) {
-//         Object.assign(this.data, data)
-//     }
-// }
 
 class ContactsApp extends Contacts{
     constructor() {
@@ -303,5 +293,3 @@ class ContactsApp extends Contacts{
         document.cookie = updatedCookie;
     }
 }
-
-new ContactsApp();

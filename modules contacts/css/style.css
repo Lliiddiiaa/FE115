@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('./back.jpg');
+    background-repeat: no-repeat;
+    background-position: cover;
+}
+
+input, textarea {
+    border: 2px solid blue;
+}
+
+.contact_form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.contact_form input {
+    margin:20px;
+}
+
+button {
+    margin-left: 30px;
+    border: 2px solid greenyellow;
+    padding: 5px;
+}
+
+.contact_list_item {
+    background-color:lightgoldenrodyellow;
+}
+
+.contact_list_item div {
+    margin: 20px;
+}
