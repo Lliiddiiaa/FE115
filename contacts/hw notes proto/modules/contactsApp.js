@@ -1,5 +1,6 @@
 import User from "./user.js";
 import Contacts from "./contacts.js";
+import getData from "./getData.js";
 
 export default class ContactsApp extends Contacts{
     constructor() {
@@ -10,20 +11,18 @@ export default class ContactsApp extends Contacts{
     async init(){
 
         let self = this;
-        async function getData() {
-            let dataStorage = [];
-            await fetch(`https://jsonplaceholder.typicode.com/users`)
-            .then(resp => resp.json())
-            .then( json => json.map( data => dataStorage.push(data)))
-            dataStorage = f(dataStorage)
+        await getData();
+        // async function getData() {
+        //     let dataStorage = [];
+        //     await fetch(`https://jsonplaceholder.typicode.com/users`)
+        //     .then(resp => resp.json())
+        //     .then( json => json.map( data => dataStorage.push(data)))
+        //     dataStorage = f(dataStorage)
 
-            // console.log(dataStorage);
-            // console.log(self);
+        //     dataStorage.forEach(elem => self.add(elem)) 
+        //     self.createContact();
 
-            dataStorage.forEach(elem => self.add(elem)) 
-            self.createContact();
-
-        }
+        // }
 
         function f(data) {
             return data.map(d => {

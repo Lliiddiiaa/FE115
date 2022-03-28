@@ -1,5 +1,6 @@
 import User from "./user.js";
 
+
 export default class Contacts {
 
     constructor() {
