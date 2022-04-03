@@ -1,18 +1,18 @@
 import Header from "./Header.js";
-import Main from "./Main";
-import Footer from "./Footer";
+import Main from "./Main.js";
+import Footer from "./Footer.js";
 
 function App() {
 
     const root = document.querySelector('#root'); //1 - перенесли root
 
 
-    this.elem = document.createElement('div');// 3 поменяли let на this 
-    this.elem.innerHTML = `
+    let elem = document.createElement('div');// 3 поменяли let на this ////////ошибка
+    elem.innerHTML = ` 
     <h2> Header </h2>
     <h2> Main  </h2>
     <h2> Footer </h2>
-    ` //2 перенесли elem для проверки //7 - This.elem.innerHTML
+    `; //2 перенесли elem для проверки //7 - This.elem.innerHTML
     
     // const render = () => { //9              
     const render = (...elems) => {   //15 переделаем рендер, создаем массив ...elems
@@ -20,7 +20,7 @@ function App() {
         // root.append(Header);//4 THIS!     //14 - импортировали Header и вернули элемент 
     }
 
-    this.init = () => { //6 // this - 8
+    const init = () => { //6 // this - 8    ////////ошибка
         // render(); 
         render(Header,Main,Footer); //15.прописываем элемент как параметр функции рендер
     }
@@ -39,3 +39,4 @@ export default App();
 
 в самой функции рендер(18) рест элемент через спред оператор получаем массив (...elems), через перебор в рут помещает каждый элемент)*/
 
+// console.log(typeof App)

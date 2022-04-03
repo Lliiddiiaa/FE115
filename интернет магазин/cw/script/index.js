@@ -14,7 +14,8 @@
 //в компоненты выносятся функциональные и структурные элементы, которые потом можно использовать
 //создаем app.js
 
-import App from "./components/App.js";//5
+import App from "../components/App.js";//5
 // new App().init();//6 создаем инит, который будкт запускать 
 // console.log(new App()); //8 
-new App().init()
+new App().init();
+
