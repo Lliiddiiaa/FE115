@@ -91,10 +91,6 @@ button:disabled {
     font-family: 'Rubik Wet Paint', cursive;
 }
 
-.card:hover {
-    border:2px solid #fee8b7;
-}
-
 .main_component{
     margin: 20px;
 }
