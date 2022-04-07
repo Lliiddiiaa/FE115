@@ -1,0 +1,251 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    width: 98vw;
+    height: 100vh;
+}
+
+body {
+    background-color: black;
+}
+
+h1,
+h2,
+h3,
+p {
+    color: 	#c29a3e;
+}
+
+h1 {
+    padding: 10px;
+    font-size: 36px;
+}
+a {
+    text-decoration: none;
+    color:#fee8b7;
+    font-family: 'Rubik Wet Paint', cursive;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ef9f7e;
+    color:#30150e;
+    border-radius: 14px;
+    margin-top: 40px;
+}
+
+button:hover {
+    background-color:white;
+    border:3px #ef9f7e solid;
+    color:#ef9f7e;
+    border-radius: 14px;
+}
+
+
+button:disabled {
+    background-color:grey;
+}
+
+#root{
+    width: 100%;
+    height: 100vh;
+}
+
+.header_component{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.nav{
+    width: 30vw;
+
+}
+
+.nav ul{
+    list-style: none;
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_component div:last-child{
+    width: 10vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo img {
+    width: 150px;
+    height:60px;
+}
+
+.card_widget {
+    text-decoration: none;
+    color:#fee8b7;
+    font-family: 'Rubik Wet Paint', cursive;
+}
+
+.card:hover {
+    border:2px solid #fee8b7;
+}
+
+.main_component{
+    margin: 20px;
+}
+
+.home_component {
+    margin: 0 auto;
+    width:500px;
+}
+
+.home_component h1,
+.catalog_component h1,
+.about_component h1 {
+    margin-left: 45%;
+    padding-bottom: 20px;
+}
+
+.about_component p {
+    padding: 20px;
+}
+
+.catalog_component {
+    display: flex;
+    flex-direction: column;
+}
+
+.catalog_component .catalog_container{
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 400px);
+    grid-template-rows: repeat(auto-fill, 320px);
+    grid-gap: 20px;
+    margin: 10px;
+}
+
+.footer_content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 90px;
+    margin-left: 20px;
+}
+
+.footer_content li{
+    padding: 10px;
+    margin-left: 20px;
+}
+
+.footer_content a:hover{
+    color:red;
+}
+
+.catalog_component .catalog_container .card{
+    display: grid;
+    grid-template-areas:
+    'image price'
+    'title title'
+    'buttonAdd buttonAdd'
+    ;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 3fr 1fr;
+    grid-gap: 5px;
+    align-items: center;
+    justify-items: center;
+}
+
+.catalog_component .catalog_container .card img{
+    width: 200px;
+    height: 200px;
+    border-radius: 5%;
+    box-shadow: 23px 25px 22px 0px rgba(251, 251, 251, 0.2);
+}
+
+.catalog_component .catalog_container .card img:hover {
+    border:1px red solid;
+    transform: scale(1.2)
+}
+
+.catalog_component .catalog_container .card a{
+    grid-area: image;
+}
+
+.catalog_component .catalog_container .card .card_price{
+    grid-area: price;
+}
+
+.catalog_component .catalog_container .card .card_title{
+    grid-area: title;
+}
+
+.catalog_component .catalog_container .card button{
+    grid-area: buttonAdd;
+}
+
+.item_component {
+    width: 40%;
+    min-width: 600px;
+    display: grid;
+    grid-template-areas:
+    'title title'
+    'image_item category'
+    'image_item price'
+    'image_item button'
+    'desc desc';
+    grid-template-columns: 4fr 2fr;
+    grid-template-rows: 50px 40px 40px auto auto;
+    grid-gap: 10px;
+
+}
+
+.item_component .card_title{
+    grid-area: title;
+    font-size: 30px;
+}
+
+.item_component p:first-child{
+    grid-area: category;
+}
+
+.item_component .item_img{
+    grid-area: image_item;
+    width: 100%;
+}
+
+.item_component p:nth-child(4){
+    grid-area: desc;
+    font-size: 30px;
+}
+
+.item_component .card_price{
+    grid-area: price;
+
+}
+
+.item_component button{
+    grid-area: button;
+    height: 60px;
+    align-self: start;
+}
+
+.card_item{
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    margin: 20px 0;
+    border-bottom: 1px solid gray;
+    box-shadow: 0px 5px 5px gray;
+}
+
+.card_item .item_image{
+    height: 100%;
+}
+
+.card_item .item_image img{
+    height: 100%;
+}
